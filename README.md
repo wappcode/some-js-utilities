@@ -1,6 +1,7 @@
 # SomeJsUtilities
 
-Este proyecto fue generado con [Angular CLI](https://github.com/angular/angular-cli) version 7.1.3.
+Este proyecto fue generado con [Angular CLI](https://github.com/angular/angular-cli) version 7.1.3. 
+-
 
 ## Descripción
 
