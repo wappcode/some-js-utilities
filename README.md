@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # SomeJsUtilities
 
 Este proyecto fue generado con [Angular CLI](https://github.com/angular/angular-cli) version 7.1.3.
@@ -45,7 +44,3 @@ scale
      parametro output valor tipo texto especifica el formato de salida de la imagen valores permitidos string B64 ó object HTML
      parametro quality 0 to 1 valor numerico entre 0 y 1 calidad de la imagen
      parametro type  valor de texto png, jpg
-=======
-# some-js-utilities
-Librerías y métodos javascript de uso común
->>>>>>> aff124ca72db2b323bca54f262659cfe6377fb27
