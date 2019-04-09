@@ -20,6 +20,11 @@ export class ImageUtilities {
     canvas.width = image.width;
     canvas.height = image.height;
     let context = canvas.getContext('2d');
+    if (type === 'jpeg') {
+      // Si la imagen de salida es jpeg agrega un fondo blanco que será vicible para imagenes de origen png con transparencia
+      context.fillStyle = '#fff';
+      context.fillRect(0, 0, canvas.width, canvas.height);
+    }
     context.drawImage(image, 0, 0);
     const imageTxt = ImageUtilities.canvasToB64(canvas, quality, type);
     canvas = null;
@@ -77,6 +82,11 @@ export class ImageUtilities {
       canvas.width = newWidth;
       canvas.height = newHeigth;
       const context: CanvasRenderingContext2D = canvas.getContext('2d');
+      if (type === 'jpeg') {
+        // Si la imagen de salida es jpeg agrega un fondo blanco que será vicible para imagenes de origen png con transparencia
+        context.fillStyle = '#fff';
+        context.fillRect(0, 0, canvas.width, canvas.height);
+      }
       context.drawImage(image, 0, 0, canvas.width, canvas.height);
 
       // Recupera los datos de la imagen escalada

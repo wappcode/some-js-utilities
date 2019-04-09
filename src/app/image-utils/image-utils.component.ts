@@ -14,7 +14,7 @@ export class ImageUtilsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    ImageUtilities.load(require('../../assets/4kimage.jpg')).then(img => {
+    ImageUtilities.load(require('../../assets/4kimage.png')).then(img => {
       this.source = img;
       ImageUtilities.scale(this.source, 800).then(imgScaled => {
         this.destiny = <HTMLImageElement> imgScaled;

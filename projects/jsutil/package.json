@@ -1,6 +1,11 @@
 {
-  "name": "jsutil",
+  "name": "somejsutilities",
   "version": "0.0.1",
+  "license" : "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jesus-abarca-g/some-js-utilities.git"
+  },
   "peerDependencies": {
     "@angular/common": "^7.2.0",
     "@angular/core": "^7.2.0"
