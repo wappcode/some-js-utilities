@@ -2,7 +2,8 @@ export class StringUtilities {
 
   /**
    * Remueve las tildes ejemplo niño = nino, México = Mexico
-   * @param text 
+   * @param text string
+   * @deprecated use removeSpecialChars function instead
    */
   static removeTilde(text: string): string {
     try {
@@ -36,8 +37,9 @@ export class StringUtilities {
   }
   /**
    * Reemplaza los caracteres especiales por el caracter separador
-   * @param text
-   * @param separator
+   * @param text string
+   * @param separator string
+   * @deprecated use removeSpecialChars function instead
    */
   static removeSpecialChars(text: string, separator: string = '-') {
     try {
@@ -51,8 +53,9 @@ export class StringUtilities {
   }
   /**
    * Calcula el ancho que puede ocupar un texto
-   * @param text
+   * @param text string
    * @param font opcional 'bold 16px Arial'
+   * @deprecated use textWidth function instead
    */
   static textWidth(text: string, font?: string) {
     let a = document.createElement('canvas');
@@ -67,7 +70,8 @@ export class StringUtilities {
 
   /**
    * Copia el texto en el porta papeles
-   * @param text
+   * @param text string
+   * @deprecated use copyToClipboard function instead
    */
   static copyToClipboard (text: string): void {
     // crea un elemento para textarea con el texto a copiar
