@@ -29,7 +29,12 @@ export const textWidth = (text: string, font?: string) => {
     canvas = null;
     return textWidthValue;
 };
-export const selectLink = (element: HTMLElement) => {
+/**
+ * Selecciona el contenido de un elemento html
+ * Parecido a seleccionar elementos en el navegador arrastrando y soltando el mouse
+ * @param element HTMLElement
+ */
+export const selectContent = (element: HTMLElement) => {
     if (window.getSelection) {
       const range = document.createRange();
       range.selectNode(element);
