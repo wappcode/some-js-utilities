@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { IndexComponent } from './index/index.component';
 import { RouterModule } from '@angular/router';
 import { ImageUtilsComponent } from './image-utils/image-utils.component';
+import { ColorUtilitiesComponent } from './color-utilities/color-utilities.component';
 
 const routes = [
     {
@@ -11,6 +12,10 @@ const routes = [
     {
         path: 'image-utils',
         component: ImageUtilsComponent
+    },
+    {
+        path: 'color-utilities',
+        component: ColorUtilitiesComponent
     },
     {
         path: '',

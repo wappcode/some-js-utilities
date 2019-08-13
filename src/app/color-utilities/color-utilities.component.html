@@ -1,0 +1,9 @@
+<h2>Hexa a RGB</h2>
+<div *ngFor="let hexColor of hexaColors">
+  <div [style.background]="hexColor">{{hexColor}}</div>
+  <div [style.background]="hexColor">{{toRGB(hexColor) | json}}</div>
+</div>
+<div *ngFor="let rgbColor of rgbColors">
+  <div [style.background]="toHex(rgbColor)">{{rgbColor|json}}</div>
+  <div [style.background]="toHex(rgbColor)">{{toHex(rgbColor)}}</div>
+</div>

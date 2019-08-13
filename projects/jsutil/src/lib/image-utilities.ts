@@ -1,3 +1,17 @@
+export enum ImageResizeMode {
+  portrait = 'portrait',
+  landscape = 'landscape',
+  percent = 'percent',
+  auto = 'auto'
+}
+export enum ImageType {
+  jpeg = 'jpeg',
+  png = 'png'
+}
+export interface ImageDimensions {
+  width: number;
+  height: number;
+}
 export class ImageUtilities {
 
   /**
@@ -9,19 +23,26 @@ export class ImageUtilities {
     return result;
   }
   /**
+   * Convierte valores de pixeles a puntos
+   */
+  static pixel2PT(pixels: number) {
+    const ptUnit = 0.7499905511811;
+    const result = pixels * ptUnit;
+    return result;
+  }
+  /**
    * Convierte una imagen en una cadena Base64
    * @param image
    * @param quality 0 to 1
    * @param type image type png, jpg ...
    */
-  static B64(image: HTMLImageElement, quality = 0.9, type = 'jpeg'): string {
-    type = type.trim().toLowerCase();
+  static B64(image: HTMLImageElement, quality = 0.9, type: ImageType = ImageType.jpeg): string {
     let canvas = document.createElement('canvas');
     canvas.width = image.width;
     canvas.height = image.height;
     let context = canvas.getContext('2d');
-    if (type === 'jpeg') {
-      // Si la imagen de salida es jpeg agrega un fondo blanco que será vicible para imagenes de origen png con transparencia
+    if (type === ImageType.jpeg) {
+      // Si la imagen de salida es jpeg agrega un fondo blanco que será visible para imagenes de origen png con transparencia
       context.fillStyle = '#fff';
       context.fillRect(0, 0, canvas.width, canvas.height);
     }
@@ -37,7 +58,7 @@ export class ImageUtilities {
    * @param quality 0 to 1
    * @param type image type png, jpg ...
    */
-  static canvasToB64(canvas: HTMLCanvasElement, quality = 0.9, type = 'jpeg'): string {
+  static canvasToB64(canvas: HTMLCanvasElement, quality = 0.9, type: ImageType =  ImageType.jpeg): string {
     const imageTxt = canvas.toDataURL('image/' + type, quality);
     return imageTxt;
   }
@@ -59,7 +80,7 @@ export class ImageUtilities {
    * Escala una imagen
    * @param image HTMLImageElement
    * @param size numero
-   * @param mode portrait tipo retrato vertical, landscape tipo paisaje horizontal, porcentaje
+   * @param resizeMode ImageResizeMode
    * @param output string B64 ó object HTMLImageElement
    * @param quality  numero
    * @param type  jpeg o png
@@ -67,14 +88,14 @@ export class ImageUtilities {
   static scale(
     image: HTMLImageElement,
     size: number,
-    mode: 'portrait'|'landscape'|'percent' = 'landscape',
+    resizeMode: ImageResizeMode = ImageResizeMode.auto,
     output: 'object'|'string' = 'object',
     quality: number = 0.9,
-    type: 'jpeg'|'png' = 'jpeg',
+    type: ImageType = ImageType.jpeg,
     ): Promise<HTMLImageElement|string> {
 
       // Definelos nuevos valores de alto y ancho
-      const dimension =  ImageUtilities.calculateSize(image, size, mode);
+      const dimension =  ImageUtilities.newDimensions(image, size, resizeMode);
       const newWidth = dimension.width;
       const newHeigth = dimension.height;
       // Crea un canvas para guardar la imagen
@@ -82,7 +103,7 @@ export class ImageUtilities {
       canvas.width = newWidth;
       canvas.height = newHeigth;
       const context: CanvasRenderingContext2D = canvas.getContext('2d');
-      if (type === 'jpeg') {
+      if (type === ImageType.jpeg) {
         // Si la imagen de salida es jpeg agrega un fondo blanco que será vicible para imagenes de origen png con transparencia
         context.fillStyle = '#fff';
         context.fillRect(0, 0, canvas.width, canvas.height);
@@ -104,29 +125,49 @@ export class ImageUtilities {
       return promise;
 
   }
-  private static calculateSize(image: HTMLImageElement, size: number,  mode: 'portrait'|'landscape'|'percent'): {width: any, height: any} {
+  /**
+   * Calcula las nuevas dimensiones de la imagen al cambiar el valor de ancho o el alto dependiendo del modo a redimensionar
+   * La imagen conserva el radio del aspecto
+   * La imagen no se modifica
+   * @param image HTMLImageElement
+   * @param size number
+   * @param resizeMode ImageResizeMode
+   * @return ImageDimensions
+   */
+  static newDimensions(
+    image: HTMLImageElement,
+    size: number,
+    resizeMode: ImageResizeMode = ImageResizeMode.auto
+    ): ImageDimensions {
     let newWidth: number , newHeigth: number;
 
     const {width, height} = image;
+    if (resizeMode === ImageResizeMode.auto) {
+      // En caso de que el modo sea automático, lo recalcula tomando como referencia el lado con mayor tamaño de la imagen
+      resizeMode = (width > height) ? ImageResizeMode.landscape : ImageResizeMode.portrait;
+    }
 
-    if (mode === 'portrait') {
+    if (resizeMode === ImageResizeMode.portrait) {
+      // Asigna el tamaño al alto de la imagen y calcula el ancho de acurdo al radio del aspecto
       // La imagen esta en formato vertical (retrato)
       newHeigth = size;
       newWidth = width * size / height;
 
-    } else if (mode === 'landscape') {
+    } else if (resizeMode === ImageResizeMode.landscape) {
+      // Asigna el tamaño al ancho de la imagen y calcula el alto de acurdo al radio del aspecto
        // La imagen esta en formato horizontal (paisaje)
        newWidth = size;
        newHeigth = height * size / width;
 
-    } else if (mode === 'percent') {
+    } else if (resizeMode === ImageResizeMode.percent) {
+      // Aplica el porcentaje al alto y ancho de la imagen
         const percent = size / 100;
         const percentWidth = width * percent;
         const percentHeigth = height * percent;
         newWidth = parseFloat(percentWidth.toFixed(2));
         newHeigth = parseFloat(percentHeigth.toFixed(2));
 
-    } else {
+    }  else {
       // Si no coincide mode con los valores permitidos lanza una excepcion
       throw  {error: 'El parámetro mode es inválido'};
     }
