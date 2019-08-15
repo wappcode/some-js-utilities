@@ -6,7 +6,7 @@ export const removeTilde = (text: string) => {
     ['ó', 'o'], ['ú', 'u'], ['Á', 'A'], ['É', 'E'], ['Í', 'I'],
     ['Ó', 'O'], ['Ú', 'U'], ['Ä', 'A'], ['Ë', 'E'], ['Ï', 'I'],
     ['Ö', 'O'], ['Ü', 'U'], ['ä', 'a'], ['ë', 'e'], ['ï', 'i'],
-    ['ö', 'o'], ['ü', 'u'], ['ñ', 'n'], ['Ñ', 'Ñ']];
+    ['ö', 'o'], ['ü', 'u'], ['ñ', 'n'], ['Ñ', 'N']];
     const  result = characters.reduce((accumulator, current) => accumulator.replace(new RegExp(current[0], 'g'), current[1]), text);
     return result;
 };

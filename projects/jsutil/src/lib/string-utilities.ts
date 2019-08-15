@@ -28,7 +28,7 @@ export class StringUtilities {
       text = text.replace(/ö/g, 'o');
       text = text.replace(/ü/g, 'u');
       text = text.replace(/ñ/g, 'n');
-      text = text.replace(/Ñ/g, 'Ñ');
+      text = text.replace(/Ñ/g, 'N');
       return text;
     } catch (ex) {
       return text;

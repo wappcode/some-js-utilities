@@ -11,5 +11,10 @@ describe('StringFnUtilities', () => {
       const result = removeSpecialChars(source, '-');
       expect(result).toEqual('-El-nino-se-comio-un-dulce-');
   });
+  it('testing Ñ uppercase', () => {
+      const source = 'FERNANDO CASTAÑEDA';
+      const result = removeTilde(source);
+      expect(result).toEqual('FERNANDO CASTANEDA');
+  });
 
 });
