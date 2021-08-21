@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ColorUtilities, ColoRGBModel } from 'projects/jsutil/src/lib/color-utilities';
+import { ColorRGB } from 'projects/jsutil/src/lib/color/color-types';
+import { hexToRgb, rgbToHex } from 'projects/jsutil/src/public_api';
 
 @Component({
   selector: 'sjsu-color-utilities',
@@ -14,7 +15,7 @@ export class ColorUtilitiesComponent{
     '#0C8',
     '#0ACC8A',
   ];
-  rgbColors: ColoRGBModel[] = [
+  rgbColors: ColorRGB[] = [
     {red: 204, green: 204, blue: 204},
     {red: 10, green: 204, blue: 138}
   ];
@@ -22,10 +23,10 @@ export class ColorUtilitiesComponent{
 
   
   toRGB(color: string) {
-    return ColorUtilities.hexToRgb(color);
+    return hexToRgb(color);
   }
-  toHex (color: ColoRGBModel) {
-    return ColorUtilities.rgbToHex(color);
+  toHex (color: ColorRGB) {
+    return rgbToHex(color);
   }
 
 }

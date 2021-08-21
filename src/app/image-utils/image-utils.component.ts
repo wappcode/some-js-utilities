@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ImageUtilities } from 'projects/jsutil/src/public_api';
 
 @Component({
   selector: 'sjsu-image-utils',

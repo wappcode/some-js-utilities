@@ -1,4 +1,4 @@
-import { removeTilde, removeSpecialChars } from './string-fn-utilities';
+import { removeTilde, removeSpecialChars } from './string-utilities';
 
 describe('StringFnUtilities', () => {
   it('testing remplazo de acentos', () => {
