@@ -6,21 +6,10 @@ import { ImageUtilities } from 'projects/jsutil/src/public_api';
   templateUrl: './image-utils.component.html',
   styleUrls: ['./image-utils.component.scss']
 })
-export class ImageUtilsComponent implements OnInit {
+export class ImageUtilsComponent  {
   source?: HTMLImageElement;
   destiny?: HTMLImageElement;
 
 
   constructor() { }
-
-  ngOnInit() {
-    // ImageUtilities.load(require('../../assets/4kimage.png')).then(img => {
-    //   this.source = img;
-    //   ImageUtilities.scale(this.source, 800).then(imgScaled => {
-    //     this.destiny = <HTMLImageElement> imgScaled;
-    //   });
-    // });
-
-  }
-
 }

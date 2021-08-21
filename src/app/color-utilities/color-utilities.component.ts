@@ -6,7 +6,7 @@ import { ColorUtilities, ColoRGBModel } from 'projects/jsutil/src/lib/color-util
   templateUrl: './color-utilities.component.html',
   styleUrls: ['./color-utilities.component.scss']
 })
-export class ColorUtilitiesComponent implements OnInit {
+export class ColorUtilitiesComponent{
 
   hexaColors = [
     '#CCC',
@@ -20,12 +20,11 @@ export class ColorUtilitiesComponent implements OnInit {
   ];
   constructor() { }
 
-  ngOnInit() {
-  }
-  toRGB(color) {
+  
+  toRGB(color: string) {
     return ColorUtilities.hexToRgb(color);
   }
-  toHex (color) {
+  toHex (color: ColoRGBModel) {
     return ColorUtilities.rgbToHex(color);
   }
 
