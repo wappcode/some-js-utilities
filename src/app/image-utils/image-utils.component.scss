@@ -1,0 +1,10 @@
+:host {
+    > * {
+        max-width: 100%;
+        overflow-x: auto;
+    }
+    pre {
+        background-color: #DDD;
+        padding: 1rem;
+    }
+}

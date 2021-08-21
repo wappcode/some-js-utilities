@@ -25,7 +25,7 @@ const pixelToPT = (pixels: number): number => {
  * @param quality 0 to 1
  * @param type image type png, jpg ...
  */
-const canvasimageToB64 = (
+const canvasToB64 = (
   canvas: HTMLCanvasElement,
   quality = 0.9,
   type: ImageType = ImageType.jpeg
@@ -58,7 +58,7 @@ const imageToB64 = (
     context.fillRect(0, 0, canvas.width, canvas.height);
   }
   context.drawImage(image, 0, 0);
-  const imageTxt = canvasimageToB64(canvas, quality, type);
+  const imageTxt = canvasToB64(canvas, quality, type);
   canvas.remove();
   return imageTxt;
 };
@@ -78,7 +78,9 @@ const loadImage = (src: string): Promise<HTMLImageElement> => {
       },
       false
     );
-    img.addEventListener('error', (event) => reject(event.error));
+    img.addEventListener('error', (event) =>
+      reject(new Error(`Error load image ${src}`))
+    );
   });
   return promise;
 };
@@ -146,10 +148,9 @@ const scaleImage = (
   image: HTMLImageElement,
   size: number,
   resizeMode: ImageResizeMode = ImageResizeMode.auto,
-  output: 'object' | 'string' = 'object',
   quality: number = 0.9,
   type: ImageType = ImageType.jpeg
-): Promise<HTMLImageElement | string> => {
+): Promise<HTMLImageElement> => {
   // Definelos nuevos valores de alto y ancho
   const dimension = calculateDimensions(image, size, resizeMode);
   const newWidth = dimension.width;
@@ -170,18 +171,8 @@ const scaleImage = (
   context.drawImage(image, 0, 0, canvas.width, canvas.height);
 
   // Recupera los datos de la imagen escalada
-  const strImage = canvasimageToB64(canvas, quality, type);
-  // Crea una promise y asigna el resultado deacuerdo a la salida solicitada
-  let promise: Promise<HTMLImageElement | string>;
-  if (output === 'string') {
-    promise = new Promise<string>((resolve, reject) => {
-      resolve(strImage);
-    });
-  } else {
-    promise = loadImage(strImage);
-  }
-
-  return promise;
+  const strImage = canvasToB64(canvas, quality, type);
+  return loadImage(strImage);
 };
 
 const createSVGElement = (input: string): SVGElement | null => {
@@ -224,9 +215,10 @@ const svgToB64 = (
 export {
   pixelToMM,
   pixelToPT,
-  canvasimageToB64,
+  canvasToB64,
   imageToB64,
   loadImage,
   calculateDimensions,
   scaleImage,
+  svgToB64,
 };

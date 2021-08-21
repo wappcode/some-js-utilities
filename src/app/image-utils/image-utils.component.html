@@ -1,2 +1,25 @@
-<img *ngIf="source" [src]="source.src" alt="Original" width="800">
-<img *ngIf="destiny" [src]="destiny.src" alt="Escalada">
+
+<h1>Muestra procesar imagenes</h1>
+<h2>Imagen precargada y convertida a cadena</h2>
+
+<p>
+    <img *ngIf="imageText.length > 0" [src]="imageText" width="200px" alt="">
+</p>
+<p><strong>Cadena de la imagen</strong></p>
+<pre>
+    
+    {{imageText}}
+</pre>
+<h2>Error generado al no poder cargar la imagen</h2>
+<p>
+    <strong color="red">{{errorLoadImage}}</strong>
+</p>
+
+<h2>Imagen escalada (600PX)</h2>
+<p>
+    Tamaño original: W -> {{originalImageWidth}}PX H -> {{originalImageHeigth}}PX;
+</p>
+<p>
+    Tamaño escalado: W {{scaledImageWidth}} H {{scaledImageHeigth}};
+</p>
+<img *ngIf="scaledImage" [src]="scaledImage.src" alt="Escalada" width="600">

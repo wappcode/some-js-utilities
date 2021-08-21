@@ -1,13 +1,12 @@
 {
   "name": "somejsutilities",
-  "version": "0.1.01",
+  "version": "0.2.01",
   "license" : "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jesus-abarca-g/some-js-utilities.git"
   },
   "dependencies": {
-    "tslib": "^2.0.0"
   },
   "peerDependencies": {
   }
