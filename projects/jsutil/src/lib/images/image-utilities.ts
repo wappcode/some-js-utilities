@@ -3,7 +3,7 @@ import { ImageDimensions, ImageResizeMode, ImageType } from './image-types';
 /**
  * Convierte valores de pixeles a milímetros
  */
-const pixelToMM = (pixels: number): number => {
+export const pixelToMM = (pixels: number): number => {
   const mmUnit = 0.264583333333334;
   const result = pixels * mmUnit;
   return result;
@@ -11,7 +11,7 @@ const pixelToMM = (pixels: number): number => {
 /**
  * Convierte valores de pixeles a puntos
  */
-const pixelToPT = (pixels: number): number => {
+export const pixelToPT = (pixels: number): number => {
   const ptUnit = 0.7499905511811;
   const result = pixels * ptUnit;
   return result;
@@ -25,7 +25,7 @@ const pixelToPT = (pixels: number): number => {
  * @param quality 0 to 1
  * @param type image type png, jpg ...
  */
-const canvasToB64 = (
+export const canvasToB64 = (
   canvas: HTMLCanvasElement,
   quality = 0.9,
   type: ImageType = ImageType.jpeg
@@ -40,7 +40,7 @@ const canvasToB64 = (
  * @param quality 0 to 1
  * @param type image type png, jpg ...
  */
-const imageToB64 = (
+export const imageToB64 = (
   image: HTMLImageElement,
   quality = 0.9,
   type: ImageType = ImageType.jpeg
@@ -67,7 +67,7 @@ const imageToB64 = (
  * Realiza la precarga de una imagen
  * @param str url de la imagen
  */
-const loadImage = (src: string): Promise<HTMLImageElement> => {
+export const loadImage = (src: string): Promise<HTMLImageElement> => {
   const img = new Image();
   img.src = src;
   const promise = new Promise<HTMLImageElement>((resolveCallback, reject) => {
@@ -94,7 +94,7 @@ const loadImage = (src: string): Promise<HTMLImageElement> => {
  * @param resizeMode ImageResizeMode
  * @return ImageDimensions
  */
-const calculateDimensions = (
+export const calculateDimensions = (
   image: HTMLImageElement,
   size: number,
   resizeMode: ImageResizeMode = ImageResizeMode.auto
@@ -144,7 +144,7 @@ const calculateDimensions = (
  * @param quality  numero
  * @param type  jpeg o png
  */
-const scaleImage = (
+export const scaleImage = (
   image: HTMLImageElement,
   size: number,
   resizeMode: ImageResizeMode = ImageResizeMode.auto,
@@ -175,14 +175,14 @@ const scaleImage = (
   return loadImage(strImage);
 };
 
-const createSVGElement = (input: string): SVGElement | null => {
+export const createSVGElement = (input: string): SVGElement | null => {
   const element = document.createElement('div');
   element.innerHTML = input;
   const svg = element.querySelector('svg');
   return svg;
 };
 
-const svgToB64 = (
+export const svgToB64 = (
   svgInput: SVGElement | string,
   width: number,
   height: number
@@ -210,15 +210,4 @@ const svgToB64 = (
       reject(e);
     }
   });
-};
-
-export {
-  pixelToMM,
-  pixelToPT,
-  canvasToB64,
-  imageToB64,
-  loadImage,
-  calculateDimensions,
-  scaleImage,
-  svgToB64,
 };

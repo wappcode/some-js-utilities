@@ -7,6 +7,7 @@
     "url": "git+https://github.com/jesus-abarca-g/some-js-utilities.git"
   },
   "dependencies": {
+    "tslib": "^2.2.0"
   },
   "peerDependencies": {
   }

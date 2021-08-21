@@ -8,7 +8,7 @@
     "test": "ng test jsutil",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:jsutil": "ng build jsutil"
+    "build:jsutil": "ng build jsutil --configuration production"
   },
   "private": true,
   "dependencies": {
