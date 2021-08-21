@@ -10,7 +10,9 @@ const rgbToHex = (color: ColorRGB, addPrefix = true): string => {
   const strColors: { [key: string]: string } = Object.entries(color).reduce(
     (acc, prop) => {
       const [key, value] = prop;
-      const colorValue = value.length === 1 ? `0${value}` : value;
+      const valueHex = value.toString(16);
+      const colorValue = valueHex.toString().padStart(2, '0')
+       value.length === 1 ? `0${valueHex}` : valueHex;
       acc = { ...acc, [key]: colorValue };
       return acc;
     },
