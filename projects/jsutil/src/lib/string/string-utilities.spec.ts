@@ -1,20 +1,39 @@
-import { removeTilde, removeSpecialChars } from './string-utilities';
+import { isEmptyString, removeTilde, replaceSpecialChars } from './string-utilities';
 
 describe('StringFnUtilities', () => {
   it('testing remplazo de acentos', () => {
-      const source = 'El niño se comió un dulce';
-      const result = removeTilde(source);
-      expect(result).toEqual('El nino se comio un dulce');
+    const source = 'El niño se comió un dulce';
+    const result = removeTilde(source);
+    expect(result).toEqual('El nino se comio un dulce');
   });
   it('testing quitar carácteres especiales', () => {
-      const source = '¿El niño se comió un dulce?';
-      const result = removeSpecialChars(source, '-');
-      expect(result).toEqual('-El-nino-se-comio-un-dulce-');
+    const source = '¿El niño se comió un dulce?';
+    const result = replaceSpecialChars(source, '-');
+    expect(result).toEqual('-El-nino-se-comio-un-dulce-');
   });
   it('testing Ñ uppercase', () => {
-      const source = 'FERNANDO CASTAÑEDA';
-      const result = removeTilde(source);
-      expect(result).toEqual('FERNANDO CASTANEDA');
+    const source = 'FERNANDO CASTAÑEDA';
+    const result = removeTilde(source);
+    expect(result).toEqual('FERNANDO CASTANEDA');
   });
-
+  it('testing no es un string vacío', () => {
+    const stringNull = !isEmptyString(null);
+    const numberEmpty = !isEmptyString(0);
+    const stringUndefined = !isEmptyString(undefined);
+    const stringArray = !isEmptyString([]);
+    const stringNoEmpty = !isEmptyString(' abcd ');
+    const allEmpty =
+      stringNull &&
+      numberEmpty &&
+      stringUndefined &&
+      stringArray &&
+      stringNoEmpty;
+    expect(allEmpty).toBeTrue();
+  });
+  it('testing es un string vacío', () => {
+    const stringEmpty = isEmptyString('');
+    const stringEmptyWithSpaces = isEmptyString('   ');
+    const allEmpty = stringEmpty && stringEmptyWithSpaces;
+    expect(allEmpty).toBeTrue();
+  });
 });

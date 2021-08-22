@@ -20,7 +20,7 @@ export const pixelToPT = (pixels: number): number => {
 /** SIDE EFECTS */
 
 /**
- * Convierte un canvas en una cadena Base64 que represent una imagen
+ * Convierte un canvas en una cadena Base64 para ser usada como imagen
  * @param canvas
  * @param quality 0 to 1
  * @param type image type png, jpg ...
@@ -64,7 +64,7 @@ export const imageToB64 = (
 };
 
 /**
- * Realiza la precarga de una imagen
+ * Realiza la precarga de una imagen. Retorna una promesa con la imagen
  * @param str url de la imagen
  */
 export const loadImage = (src: string): Promise<HTMLImageElement> => {
@@ -175,6 +175,11 @@ export const scaleImage = (
   return loadImage(strImage);
 };
 
+/**
+ * Convierte una cadena que representa un svg en un elmento SVGElement
+ * @param input 
+ * @returns 
+ */
 export const createSVGElement = (input: string): SVGElement | null => {
   const element = document.createElement('div');
   element.innerHTML = input;

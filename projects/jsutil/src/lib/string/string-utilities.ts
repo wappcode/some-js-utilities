@@ -1,6 +1,6 @@
 // PURE FUNCTIONS
 
-export const removeTilde = (text: string) => {
+export const removeTilde = (text: string): string => {
   const characters = [
     ['á', 'a'],
     ['é', 'e'],
@@ -37,10 +37,16 @@ export const removeTilde = (text: string) => {
  * @param text
  * @returns
  */
-export const isEmptyString = (text: any) =>
-  typeof text === 'string' && text.trim().length > 0;
+export const isEmptyString = (text: any): boolean =>
+  typeof text === 'string' && text.trim().length < 1;
 
-export const removeSpecialChars = (text: string, separator: string) =>
+  /**
+   * Reemplaza los carácteres especiales acentos y simbolos
+   * @param text 
+   * @param separator 
+   * @returns 
+   */
+export const replaceSpecialChars = (text: string, separator: string) =>
   removeTilde(text).trim().replace(/\W/g, separator);
 
 /**
@@ -61,7 +67,7 @@ export const stringIncludesOmitTilde = (
 
 // IMPURE FUNCTIONS
 /**
- * Calcula el ancho que puede ocupar un texto
+ * Calcula el ancho que puede ocupar un texto en CSS pixels
  * @param text string
  * @param font opcional 'bold 16px Arial'
  */
@@ -83,7 +89,7 @@ export const textWidth = (text: string, font?: string): number => {
  * Parecido a seleccionar elementos en el navegador arrastrando y soltando el mouse
  * @param element HTMLElement
  */
-export const selectElementContent = (element: HTMLElement) => {
+export const selectElementContent = (element: HTMLElement): void => {
   if (window.getSelection) {
     const range = document.createRange();
     range.selectNode(element);
