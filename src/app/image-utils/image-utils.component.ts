@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { imageToB64, loadImage, scaleImage } from 'projects/jsutil/src/public_api';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { imageToB64, loadImage, scaleImage, svgToB64 } from 'projects/jsutil/src/public_api';
 
 @Component({
   selector: 'sjsu-image-utils',
   templateUrl: './image-utils.component.html',
   styleUrls: ['./image-utils.component.scss']
 })
-export class ImageUtilsComponent implements OnInit {
+export class ImageUtilsComponent implements OnInit, AfterViewInit {
   source?: HTMLImageElement;
   destiny?: HTMLImageElement;
   imageText = '';
@@ -18,13 +19,21 @@ export class ImageUtilsComponent implements OnInit {
   scaledImageWidth?: number;
   scaledImageHeigth?: number;
   scaledImage?: HTMLImageElement;
+  svgImageText?: string;
+  svgImageURL?: SafeResourceUrl;
+  svgImageError?: string;
 
-  constructor() { }
+  @ViewChild('svgElement') svgElement?: any;
+  constructor(private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
     this.setImage();
     this.setErrorImage();
     this.setScaledValues();
+  }
+
+  ngAfterViewInit(): void {
+    this.setSVGImage();
   }
 
 
@@ -47,5 +56,19 @@ export class ImageUtilsComponent implements OnInit {
       this.scaledImageWidth = img.width;
       this.scaledImage = img;
     }).catch(error => this.errorLoadImage = error);
+  }
+  private setSVGImage(): void {
+    const svg = this.svgElement?.nativeElement;
+    const svgErr = {} as SVGElement;
+    if (!svg) {
+      return ;
+    }
+    svgToB64(svg)
+    .then(img => this.svgImageText = img)
+    .then(img => this.svgImageURL = this.sanitizer.bypassSecurityTrustResourceUrl(img));
+    svgToB64(svgErr).then(img => img).catch(err => {
+      console.log("Error convertir svg", err);
+      this.svgImageError = "Error convertir svg"
+    })
   }
 }

@@ -182,22 +182,34 @@ export const createSVGElement = (input: string): SVGElement | null => {
   return svg;
 };
 
+/**
+ * Convierte una imagen SVG en string B64
+ * Para objetos foreignObject es necesario agregar un elemento hijo como root y
+ * asignarle el atributo xmlns="http://www.w3.org/1999/xhtml 
+ * Ej. <foreignObject><div xmlns="http://www.w3.org/1999/xhtml"><strong style="color: red">Hola Mundo</strong></div></foreignObject>
+ * @param svg 
+ * @param width 
+ * @param height 
+ * @returns 
+ */
 export const svgToB64 = (
-  svgInput: SVGElement | string,
-  width: number,
-  height: number
+  svgInput: SVGElement,
+  width?: number,
+  height?: number
 ): Promise<string> => {
   return new Promise((resolve, reject) => {
-    const svg: SVGElement | null =
-      typeof svgInput === 'string'
-        ? createSVGElement(svgInput)
-        : (svgInput as SVGElement);
     try {
-      if (!svg) {
-        throw new Error('Invalid SVG');
+      const svg = svgInput.cloneNode(true) as SVGElement;
+      if (width) {
+        svg.setAttribute('width', `${width}`);
       }
-      svg.setAttribute('width', `${width}`);
-      svg.setAttribute('height', `${height}`);
+      if (height) {
+        svg.setAttribute('height', `${height}`);
+      }
+      const attrXmlns = svg.getAttribute("xmlns");
+      if (!attrXmlns) {
+        svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+      }
       const svgString = svg.outerHTML;
       const blob = new Blob([svgString], { type: 'image/svg+xml' });
       const reader = new FileReader();
