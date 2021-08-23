@@ -164,3 +164,49 @@ Copia el texto en el porta papeles
     (text) => void
 
 - text: Texto a copiar
+
+## Funciones para colores
+
+### rgbToHex
+Convierte un color rgb a su representacion hexadecimal
+
+    (rgbColor) => string
+
+- rgbColor: Objecto con las propiedades
+    - red: numérico (rojo)
+    - green: numérico (verde)
+    - blue: numérico (azul)
+
+### hexToRgb
+Convierte un color hexadecimal en un objecto ColorRGB
+
+    (hexaColor) => ColorRGB ({red, green, blue})
+
+    hexToRgb('#FF0000'); // {red: 255, green: 0, blue: 0}
+
+- hexaColor: Cadena que representa el color hexadecimal (#FF0000)
+
+## Funciones para manejo de URLs
+
+### objectToURLParam
+Convierte un objeto javascript en una cadena para enviar en una url
+    (plainObject) => string
+
+    objectToURLParam({param1: 'p1', param2: 'p2'}); // 'param1=p1&param2=p2'
+
+- plainObject: Objeto plano javascript
+
+
+## Funciones generales
+
+### isEmpty
+Determina si una variable esta vacía
+
+    (var) => boolean
+
+    isEmpty(' '); // true
+    isEmpty(null); // true
+    isEmpty([]); // true
+    isEmpty({}); // true
+    isEmpty(undefined); // true
+    isEmpty('Hello'); // false
