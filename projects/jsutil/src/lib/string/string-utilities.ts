@@ -60,9 +60,12 @@ export const stringIncludesOmitTilde = (
   text: string,
   subtext: string
 ): boolean => {
-  const textFormated = removeTilde(text.trim());
-  const subTextFormated = removeTilde(subtext.trim());
-  return text.includes(subtext);
+  if (typeof text !== 'string' || typeof subtext !== 'string') {
+    return false;
+  }
+  const textFormated = removeTilde(text.trim().toLowerCase());
+  const subTextFormated = removeTilde(subtext.trim().toLowerCase());
+  return textFormated.includes(subTextFormated);
 };
 
 // IMPURE FUNCTIONS
