@@ -200,7 +200,9 @@ export const createSVGElement = (input: string): SVGElement | null => {
 export const svgToB64 = (
   svgInput: SVGElement,
   width?: number,
-  height?: number
+  height?: number,
+  quality = 0.9,
+  type: ImageType = ImageType.jpeg
 ): Promise<string> => {
   return new Promise((resolve, reject) => {
     try {
@@ -221,7 +223,7 @@ export const svgToB64 = (
       reader.readAsDataURL(blob);
       reader.onloadend = () => {
         const base64data = reader.result as string;
-        resolve(base64data);
+        loadImage(base64data).then(src => imageToB64(src, quality, type)).then(resolve);
       };
     } catch (e) {
       reject(e);
