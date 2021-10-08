@@ -8,3 +8,5 @@ export * from './lib/url/url-utilities';
 export * from './lib/color/color-utilities';
 export * from './lib/color/color-types';
 export * from './lib/images/image-types';
+export * from './lib/general/storage-utilities';
+export * from './lib/general/general-utilities';
