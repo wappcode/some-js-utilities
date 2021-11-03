@@ -7,13 +7,15 @@ import { AppModuleRouting } from './app.module.routing';
 import { ImageUtilsComponent } from './image-utils/image-utils.component';
 import { ColorUtilitiesComponent } from './color-utilities/color-utilities.component';
 import { CommonModule } from '@angular/common';
+import { CanvasUtilitiesComponent } from './canvas-utilities/canvas-utilities.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     IndexComponent,
     ImageUtilsComponent,
-    ColorUtilitiesComponent
+    ColorUtilitiesComponent,
+    CanvasUtilitiesComponent
   ],
   imports: [
     CommonModule,

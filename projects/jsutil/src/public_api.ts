@@ -10,3 +10,4 @@ export * from './lib/color/color-types';
 export * from './lib/images/image-types';
 export * from './lib/general/storage-utilities';
 export * from './lib/general/general-utilities';
+export * from './lib/canvas/canvas-utilities';
