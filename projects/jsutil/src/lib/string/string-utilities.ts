@@ -39,13 +39,20 @@ export const removeTilde = (text: string): string => {
  */
 export const isEmptyString = (text: any): boolean =>
   typeof text === 'string' && text.trim().length < 1;
+/**
+ * Determina si el parametro es una cadena y no esta vacía
+ * @param text
+ * @returns
+ */
+export const isStringNotEmpty = (text: any): boolean =>
+  typeof text === 'string' && text.trim().length > 0;
 
-  /**
-   * Reemplaza los carácteres especiales acentos y simbolos
-   * @param text 
-   * @param separator 
-   * @returns 
-   */
+/**
+ * Reemplaza los carácteres especiales acentos y simbolos
+ * @param text
+ * @param separator
+ * @returns
+ */
 export const replaceSpecialChars = (text: string, separator: string) =>
   removeTilde(text).trim().replace(/\W/g, separator);
 

@@ -122,6 +122,20 @@ Ejemplos:
     isEmptyString(' Hello  '); // false
     isEmptyString(null); // false
     isEmptyString(0); // false
+    isEmptyString(123); // false
+### isStringNotEmpty
+Determina si un valor es de tipo texto y no esta vacío
+
+    (text) => boolean
+
+Ejemplos:
+
+    isEmptyString(''); // false
+    isEmptyString('   '); // false
+    isEmptyString(' Hello  '); // true
+    isEmptyString(null); // false
+    isEmptyString(0); // false
+    isEmptyString(123); // false
 
 ### removeTilde
 Remueve los acentos, diéresis y ñ de una cadena.
