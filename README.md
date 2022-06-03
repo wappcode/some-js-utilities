@@ -178,6 +178,12 @@ Copia el texto en el porta papeles
     (text) => void
 
 - text: Texto a copiar
+### isValidEmail
+Valida el formato de un email
+
+    (email) => boolean
+
+
 
 ## Funciones para colores
 

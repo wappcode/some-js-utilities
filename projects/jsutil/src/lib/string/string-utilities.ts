@@ -141,3 +141,14 @@ export const copyTextToClipboard = (text: string): void => {
     selection.addRange(selected);
   }
 };
+
+  /**
+   * Valida el formato de un email
+   * @param email 
+   * @returns 
+   */
+   export const isValidEmail = (email: string): boolean => {
+    
+    const re = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+    return re.test(String(email).toLowerCase());
+};
