@@ -1,3 +1,7 @@
+
+export const isPlainObject = (value: any) => {
+  return (!!value && typeof value === 'object' && (value.__proto__ === null || value.__proto__ === Object.prototype))
+}
 export const isEmpty = (value: any): boolean => {
   if (value === null) {
     return true;
@@ -11,8 +15,8 @@ export const isEmpty = (value: any): boolean => {
   if (Array.isArray(value)) {
     return value.length < 1;
   }
-  if (typeof value === 'object') {
+  if (!!value && typeof value === 'object' && (value.__proto__ === null || value.__proto__ === Object.prototype)) {
     return Object.entries(value).length < 1;
   }
-  return false;
+  return !value;
 };
