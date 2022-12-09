@@ -12,6 +12,69 @@ module.exports = {
             umdNamedDefine: true,
           },
     },
+    'canvasutilities': {
+        import:  './src/canvas-utilities.ts',
+        library: {
+            // all options under `output.library` can be used here
+            name: 'percent-chart',
+            type: 'umd',
+            umdNamedDefine: true,
+          },
+    },
+    'colorutilities': {
+        import:  './src/color-utilities.ts',
+        library: {
+            // all options under `output.library` can be used here
+            name: 'percent-chart',
+            type: 'umd',
+            umdNamedDefine: true,
+          },
+    },
+    'generalutilities': {
+        import:  './src/general-utilities.ts',
+        library: {
+            // all options under `output.library` can be used here
+            name: 'percent-chart',
+            type: 'umd',
+            umdNamedDefine: true,
+          },
+    },
+    'imageutilities': {
+        import:  './src/image-utilities.ts',
+        library: {
+            // all options under `output.library` can be used here
+            name: 'percent-chart',
+            type: 'umd',
+            umdNamedDefine: true,
+          },
+    },
+    'peridoutilities': {
+        import:  './src/period-utilities.ts',
+        library: {
+            // all options under `output.library` can be used here
+            name: 'percent-chart',
+            type: 'umd',
+            umdNamedDefine: true,
+          },
+    },
+    'storageutilities': {
+        import:  './src/storage-utilities.ts',
+        library: {
+            // all options under `output.library` can be used here
+            name: 'percent-chart',
+            type: 'umd',
+            umdNamedDefine: true,
+          },
+    },
+    'urlutilities': {
+        import:  './src/url-utilities.ts',
+        library: {
+            // all options under `output.library` can be used here
+            name: 'percent-chart',
+            type: 'umd',
+            umdNamedDefine: true,
+          },
+    },
   },
   module: {
     rules: [
