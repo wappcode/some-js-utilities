@@ -4,7 +4,7 @@ module.exports = {
   mode: 'production',
   entry: {
     'stringutilities': {
-        import:  './src/string/string-utilities.ts',
+        import:  './src/string-utilities.ts',
         library: {
             // all options under `output.library` can be used here
             name: 'percent-chart',
