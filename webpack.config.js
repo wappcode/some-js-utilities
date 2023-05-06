@@ -7,7 +7,7 @@ module.exports = {
         import:  './src/string-utilities.ts',
         library: {
             // all options under `output.library` can be used here
-            name: 'percent-chart',
+            name: 'string-utilities',
             type: 'umd',
             umdNamedDefine: true,
           },
@@ -16,7 +16,7 @@ module.exports = {
         import:  './src/canvas-utilities.ts',
         library: {
             // all options under `output.library` can be used here
-            name: 'percent-chart',
+            name: 'canvas-utilities',
             type: 'umd',
             umdNamedDefine: true,
           },
@@ -25,7 +25,7 @@ module.exports = {
         import:  './src/color-utilities.ts',
         library: {
             // all options under `output.library` can be used here
-            name: 'percent-chart',
+            name: 'color-utilities',
             type: 'umd',
             umdNamedDefine: true,
           },
@@ -34,7 +34,7 @@ module.exports = {
         import:  './src/general-utilities.ts',
         library: {
             // all options under `output.library` can be used here
-            name: 'percent-chart',
+            name: 'general-utilities',
             type: 'umd',
             umdNamedDefine: true,
           },
@@ -43,16 +43,16 @@ module.exports = {
         import:  './src/image-utilities.ts',
         library: {
             // all options under `output.library` can be used here
-            name: 'percent-chart',
+            name: 'image-utilities',
             type: 'umd',
             umdNamedDefine: true,
           },
     },
-    'peridoutilities': {
+    'peridutilities': {
         import:  './src/period-utilities.ts',
         library: {
             // all options under `output.library` can be used here
-            name: 'percent-chart',
+            name: 'period-utilities',
             type: 'umd',
             umdNamedDefine: true,
           },
@@ -61,7 +61,7 @@ module.exports = {
         import:  './src/storage-utilities.ts',
         library: {
             // all options under `output.library` can be used here
-            name: 'percent-chart',
+            name: 'storage-utilities',
             type: 'umd',
             umdNamedDefine: true,
           },
@@ -70,7 +70,7 @@ module.exports = {
         import:  './src/url-utilities.ts',
         library: {
             // all options under `output.library` can be used here
-            name: 'percent-chart',
+            name: 'url-utilities',
             type: 'umd',
             umdNamedDefine: true,
           },

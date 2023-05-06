@@ -177,8 +177,8 @@ export const scaleImage = (
 
 /**
  * Convierte una cadena que representa un svg en un elmento SVGElement
- * @param input 
- * @returns 
+ * @param input
+ * @returns
  */
 export const createSVGElement = (input: string): SVGElement | null => {
   const element = document.createElement('div');
@@ -190,20 +190,20 @@ export const createSVGElement = (input: string): SVGElement | null => {
 /**
  * Convierte una imagen SVG en string B64
  * Para objetos foreignObject es necesario agregar un elemento hijo como root y
- * asignarle el atributo xmlns="http://www.w3.org/1999/xhtml 
+ * asignarle el atributo xmlns="http://www.w3.org/1999/xhtml
  * Ej. <foreignObject><div xmlns="http://www.w3.org/1999/xhtml"><strong style="color: red">Hola Mundo</strong></div></foreignObject>
- * @param svg 
- * @param width 
- * @param height 
+ * @param svg
+ * @param width
+ * @param height
  * @param type
- * @returns 
+ * @returns
  */
 export const svgToB64 = (
   svgInput: SVGElement,
   width?: number,
   height?: number,
   quality = 0.9,
-  type: ImageType  = ImageType.jpeg
+  type: ImageType = ImageType.jpeg
 ): Promise<string> => {
   return new Promise((resolve, reject) => {
     try {
@@ -214,7 +214,7 @@ export const svgToB64 = (
       if (height) {
         svg.setAttribute('height', `${height}`);
       }
-      const attrXmlns = svg.getAttribute("xmlns");
+      const attrXmlns = svg.getAttribute('xmlns');
       if (!attrXmlns) {
         svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
       }
@@ -224,7 +224,9 @@ export const svgToB64 = (
       reader.readAsDataURL(blob);
       reader.onloadend = () => {
         const base64data = reader.result as string;
-        loadImage(base64data).then(src => imageToB64(src, quality, type)).then(resolve);
+        loadImage(base64data)
+          .then((src) => imageToB64(src, quality, type))
+          .then(resolve);
       };
     } catch (e) {
       reject(e);
@@ -232,12 +234,12 @@ export const svgToB64 = (
   });
 };
 /**
- * Convierte una imagen SVG en una imagen PNG 
+ * Convierte una imagen SVG en una imagen PNG
  * Utiliza de forma interna la función svgToB64 ver docs de esa funcion para más detalles
- * @param svg 
- * @param width 
- * @param height 
- * @returns 
+ * @param svg
+ * @param width
+ * @param height
+ * @returns
  */
 export const svgToPNG = (
   svgInput: SVGElement,
@@ -246,16 +248,15 @@ export const svgToPNG = (
   quality = 0.9
 ): Promise<HTMLImageElement> => {
   const type = ImageType.png;
-  return svgToB64(svgInput, width, height,quality, type).then(loadImage);
-  
+  return svgToB64(svgInput, width, height, quality, type).then(loadImage);
 };
 /**
- * Convierte una imagen SVG en una imagen JPG 
+ * Convierte una imagen SVG en una imagen JPG
  * Utiliza de forma interna la función svgToB64 ver docs de esa funcion para más detalles
- * @param svg 
- * @param width 
- * @param height 
- * @returns 
+ * @param svg
+ * @param width
+ * @param height
+ * @returns
  */
 export const svgToJPEG = (
   svgInput: SVGElement,
@@ -264,6 +265,79 @@ export const svgToJPEG = (
   quality = 0.9
 ): Promise<HTMLImageElement> => {
   const type = ImageType.jpeg;
-  return svgToB64(svgInput, width, height,quality, type).then(loadImage);
-  
+  return svgToB64(svgInput, width, height, quality, type).then(loadImage);
+};
+
+export const roundImage = async (
+  image: HTMLImageElement,
+  borderRadius: number,
+  quality: number = 1,
+  strokeColor = 'transparent',
+  strokeWidth: number = 0
+): Promise<HTMLImageElement> => {
+  const canvas = document.createElement('canvas');
+  canvas.width = image.width;
+  canvas.height = image.height;
+  const ctx = canvas.getContext('2d')!;
+  const width = image.width - strokeWidth * 2;
+  const height = image.height - strokeWidth * 2;
+  const x = strokeWidth;
+  const y = strokeWidth;
+
+  ctx.save();
+  ctx.beginPath();
+  ctx.moveTo(x + borderRadius, y);
+  ctx.lineTo(x + width - borderRadius, y);
+  ctx.quadraticCurveTo(x + width, y, x + width, y + borderRadius);
+  ctx.lineTo(x + width, y + height - borderRadius);
+  ctx.quadraticCurveTo(
+    x + width,
+    y + height,
+    x + width - borderRadius,
+    y + height
+  );
+  ctx.lineTo(x + borderRadius, y + height);
+  ctx.quadraticCurveTo(x, y + height, x, y + height - borderRadius);
+  ctx.lineTo(x, y + borderRadius);
+  ctx.quadraticCurveTo(x, y, x + borderRadius, y);
+  ctx.closePath();
+  ctx.lineWidth = strokeWidth;
+  ctx.strokeStyle = strokeColor;
+  ctx.stroke();
+  ctx.clip();
+  ctx.drawImage(image, 0, 0);
+  ctx.restore();
+  const newImageSrc = canvasToB64(canvas, quality, ImageType.png);
+  const newImage = await loadImage(newImageSrc);
+  return newImage;
+};
+export const circularImage = async (
+  image: HTMLImageElement,
+  quality: number = 1,
+  strokeColor = 'transparent',
+  strokeWidth: number = 0
+): Promise<HTMLImageElement> => {
+  const canvas = document.createElement('canvas');
+  canvas.width = image.width;
+  canvas.height = image.height;
+  const minSize = Math.min(image.width, image.height);
+  const size = minSize - strokeWidth * 2;
+  const ctx = canvas.getContext('2d')!;
+  const radius = size / 2;
+  const x = minSize / 2;
+  const y = minSize / 2;
+  ctx.save();
+  ctx.beginPath();
+  ctx.arc(x, y, radius, 0, Math.PI * 2, true);
+  ctx.closePath();
+  ctx.lineWidth = strokeWidth;
+  ctx.strokeStyle = strokeColor;
+  ctx.stroke();
+  ctx.clip();
+
+  ctx.drawImage(image, 0, 0);
+  ctx.restore();
+  const newImageSrc = canvasToB64(canvas, quality, ImageType.png);
+  const newImage = await loadImage(newImageSrc);
+  return newImage;
 };

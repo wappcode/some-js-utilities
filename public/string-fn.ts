@@ -13,8 +13,13 @@ const processRmoveTilde = () => {
 
 
     
-    addEventListener('load', (event) => {
-        processRmoveTilde();
+    window.addEventListener('load', (event) => {
+        console.log("string function");
+        try {
+            processRmoveTilde();
+
+        }catch(e) {
+        }
 
     })
   

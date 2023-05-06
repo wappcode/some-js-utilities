@@ -13,6 +13,24 @@ module.exports = {
             umdNamedDefine: true,
           },
     },
+    'imageutilities': {
+        import:  './public/image-fn.ts',
+        library: {
+            // all options under `output.library` can be used here
+            name: 'imageutilities',
+            type: 'umd',
+            umdNamedDefine: true,
+          },
+    },
+    'index': {
+        import:  './public/index.ts',
+        library: {
+            // all options under `output.library` can be used here
+            name: 'index',
+            type: 'umd',
+            umdNamedDefine: true,
+          },
+    },
   },
   devtool: 'inline-source-map',
   devServer: {
@@ -40,6 +58,10 @@ module.exports = {
       {
         filename: 'string-functions.html',
         template: 'public/string-functions.html'
+      },
+      {
+        filename: 'image-functions.html',
+        template: 'public/image-functions.html'
       }
 
     )

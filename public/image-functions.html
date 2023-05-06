@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Funciones de Imágenes</title>
+    <script src="imageutilities.js"></script>
+    <style>
+        html,
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 110%;
+        }
+
+        body {
+            padding: 2rem;
+        }
+
+        code {
+            padding: 1rem;
+            background-color: rgb(238, 238, 228);
+            display: block;
+            white-space: pre;
+            border-radius: 6px;
+        }
+
+        .round-img-original,
+        .round-img-modified,
+        .circular-img-modified {
+            width: 200px;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Image Functions</h1>
+
+    <div>
+        <h2>Redondear Imágen</h2>
+        <p>Crea una imagen con bordes redondos</p>
+        <div id="remove-tilde">
+            <h3>Uso:</h3>
+            <code>
+          const img = await loadImage('image.png'); 
+          const borderRadius = 20;
+          const strokeColor = "#ff0000"; 
+          const strokeWidth = 4 
+          const quality=1;
+          
+          roundImage(img,borderRadius, quality, strokeColor, strokeWidth);<br />
+        </code>
+        </div>
+        <div>
+            <img src="images/test-image.png" class="round-img-original" />
+            <img src="images/test-image.png" class="round-img-modified" />
+        </div>
+    </div>
+    <div>
+        <h2>Imágen circular</h2>
+        <p>Crea una imagen con circular</p>
+        <div id="remove-tilde">
+            <h3>Uso:</h3>
+            <code>
+          const img = await loadImage('image.png'); 
+          const strokeColor = "#ff0000"; 
+          const strokeWidth = 4 
+          const quality=1;
+          
+          processCircularImage(img, quality, strokeColor, strokeWidth);<br />
+        </code>
+        </div>
+        <div>
+            <img src="images/test-image.png" class="round-img-original" />
+            <img src="images/test-image.png" class="circular-img-modified" />
+        </div>
+    </div>
+
+</body>
+
+</html>
