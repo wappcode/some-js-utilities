@@ -128,6 +128,10 @@ El atributo src de la imagen generada es una cadena base64.
 
 Los parámetros width y height actualizan los atributos width and height de una copia del elemento svg para después generar la imagen en base a esa copia. El elemento svg original no es modificado.
 
+## roundImage
+
+## circularImage
+
 ### pixelToMM
 
 Convierte valores de pixeles a milímetros
