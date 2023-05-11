@@ -3,6 +3,7 @@ const nodeExternals = require('webpack-node-externals');
 const CopyPlugin = require('copy-webpack-plugin');
 module.exports = {
   mode: 'production',
+  devtool: 'source-map',
   entry: {
     somejsutilities: {
       import: './src/somejsutilities.ts',
