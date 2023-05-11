@@ -9,7 +9,7 @@ module.exports = {
       library: {
         // all options under `output.library` can be used here
         name: 'stringutilities',
-        type: 'esm',
+        type: 'umd',
         umdNamedDefine: true,
       },
     },
