@@ -10,7 +10,6 @@ module.exports = {
         type: 'umd2',
         name: 'somejsutilities',
         umdNamedDefine: true,
-        export: 'default',
       },
     },
     'string-utilities': {
@@ -101,6 +100,5 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     clean: true,
     globalObject: 'this',
-    libraryTarget: 'umd2',
   },
 };

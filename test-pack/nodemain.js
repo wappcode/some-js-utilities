@@ -1,5 +1,7 @@
-// const { replaceSpecialChars } = require('somejsutilities/stringutilities');
-// console.log(replaceSpecialChars('hola niño', '_'), replaceSpecialChars);
+import { removeTilde } from 'somejsutilities/string-utilities';
+// const { removeTilde } = stringUtilities;
 
-import { removeTilde } from 'somejsutilities';
+// const { removeTilde } = require('somejsutilities');
+// const { removeTilde } = require('somejsutilities/string-utilities');
+
 console.log('LOG VAR', removeTilde);
