@@ -90,6 +90,7 @@ module.exports = {
   plugins: [
     new CopyPlugin({
       patterns: [{ from: 'src/package.json', to: 'src' }],
+      patterns: [{ from: 'README.md', to: 'src' }],
     }),
   ],
   resolve: {

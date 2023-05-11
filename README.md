@@ -128,9 +128,24 @@ El atributo src de la imagen generada es una cadena base64.
 
 Los parámetros width y height actualizan los atributos width and height de una copia del elemento svg para después generar la imagen en base a esa copia. El elemento svg original no es modificado.
 
-## roundImage
+### roundImage
 
-## circularImage
+Redondea las esquinas de una imagen
+
+- image: Elemento HTML Image
+- borderRadius: (opcional) radio del borde
+- quality: (opcional) calidad de la imagen
+- strokeColor = (opcional) color del borde,
+- strokeWidth: (opcional) tamaño del borde
+
+### circularImage
+
+Crea una imagen circular
+
+- image: Elemento HTML Image
+- quality: (opcional) calidad de la imagen
+- strokeColor = (opcional) color del borde,
+- strokeWidth: (opcional) tamaño del borde
 
 ### pixelToMM
 
