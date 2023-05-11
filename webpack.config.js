@@ -1,79 +1,81 @@
 const path = require('path');
-const nodeExternals = require( "webpack-node-externals" );
+const nodeExternals = require('webpack-node-externals');
+const CopyPlugin = require('copy-webpack-plugin');
 module.exports = {
   mode: 'production',
   entry: {
-    'stringutilities': {
-        import:  './src/string-utilities.ts',
-        library: {
-            // all options under `output.library` can be used here
-            name: 'string-utilities',
-            type: 'umd',
-            umdNamedDefine: true,
-          },
+    somejsutilities: {
+      import: './src/somejsutilities.ts',
+      library: {
+        type: 'umd2',
+        name: 'somejsutilities',
+        umdNamedDefine: true,
+        export: 'default',
+      },
     },
-    'canvasutilities': {
-        import:  './src/canvas-utilities.ts',
-        library: {
-            // all options under `output.library` can be used here
-            name: 'canvas-utilities',
-            type: 'umd',
-            umdNamedDefine: true,
-          },
+    'string-utilities': {
+      import: './src/string-utilities.ts',
+      library: {
+        type: 'umd2',
+        name: 'string-utilities',
+        umdNamedDefine: true,
+      },
     },
-    'colorutilities': {
-        import:  './src/color-utilities.ts',
-        library: {
-            // all options under `output.library` can be used here
-            name: 'color-utilities',
-            type: 'umd',
-            umdNamedDefine: true,
-          },
+    'canvas-utilities': {
+      import: './src/canvas-utilities.ts',
+      library: {
+        name: 'canvas-utilities',
+        type: 'umd2',
+        umdNamedDefine: true,
+      },
     },
-    'generalutilities': {
-        import:  './src/general-utilities.ts',
-        library: {
-            // all options under `output.library` can be used here
-            name: 'general-utilities',
-            type: 'umd',
-            umdNamedDefine: true,
-          },
+    'color-utilities': {
+      import: './src/color-utilities.ts',
+      library: {
+        name: 'color-utilities',
+        type: 'umd2',
+        umdNamedDefine: true,
+      },
     },
-    'imageutilities': {
-        import:  './src/image-utilities.ts',
-        library: {
-            // all options under `output.library` can be used here
-            name: 'image-utilities',
-            type: 'umd',
-            umdNamedDefine: true,
-          },
+    'general-utilities': {
+      import: './src/general-utilities.ts',
+      library: {
+        name: 'general-utilities',
+        type: 'umd2',
+        umdNamedDefine: true,
+      },
     },
-    'peridutilities': {
-        import:  './src/period-utilities.ts',
-        library: {
-            // all options under `output.library` can be used here
-            name: 'period-utilities',
-            type: 'umd',
-            umdNamedDefine: true,
-          },
+    'image-utilities': {
+      import: './src/image-utilities.ts',
+      library: {
+        name: 'image-utilities',
+        type: 'umd2',
+        umdNamedDefine: true,
+      },
     },
-    'storageutilities': {
-        import:  './src/storage-utilities.ts',
-        library: {
-            // all options under `output.library` can be used here
-            name: 'storage-utilities',
-            type: 'umd',
-            umdNamedDefine: true,
-          },
+    'perid-utilities': {
+      import: './src/period-utilities.ts',
+      library: {
+        name: 'perid-utilities',
+        type: 'umd2',
+        umdNamedDefine: true,
+      },
     },
-    'urlutilities': {
-        import:  './src/url-utilities.ts',
-        library: {
-            // all options under `output.library` can be used here
-            name: 'url-utilities',
-            type: 'umd',
-            umdNamedDefine: true,
-          },
+    'storage-utilities': {
+      import: './src/storage-utilities.ts',
+      library: {
+        name: 'storage-utilities',
+        type: 'umd2',
+        umdNamedDefine: true,
+      },
+    },
+    'url-utilities': {
+      import: './src/url-utilities.ts',
+      library: {
+        name: 'url-utilities',
+        type: 'umd2',
+        umdNamedDefine: true,
+      },
     },
   },
   module: {
@@ -85,13 +87,20 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new CopyPlugin({
+      patterns: [{ from: 'src/package.json', to: 'src' }],
+    }),
+  ],
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },
-  externals: [ nodeExternals() ], // excluye las librerias de node al compilar
+  externals: [nodeExternals()], // excluye las librerias de node al compilar
   output: {
     filename: 'src/[name].js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
+    globalObject: 'this',
+    libraryTarget: 'umd2',
   },
 };

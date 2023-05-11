@@ -112,6 +112,7 @@ export const selectElementContent = (element: HTMLElement): void => {
  * @param text string
  */
 export const copyTextToClipboard = (text: string): void => {
+  // TODO: reemplazar codigo para utilizar navigator.clipboard.writeText (write)
   // crea un elemento para textarea con el texto a copiar
   const element = document.createElement('textarea');
   element.value = text;
@@ -142,13 +143,12 @@ export const copyTextToClipboard = (text: string): void => {
   }
 };
 
-  /**
-   * Valida el formato de un email
-   * @param email 
-   * @returns 
-   */
-   export const isValidEmail = (email: string): boolean => {
-    
-    const re = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-    return re.test(String(email).toLowerCase());
+/**
+ * Valida el formato de un email
+ * @param email
+ * @returns
+ */
+export const isValidEmail = (email: string): boolean => {
+  const re = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+  return re.test(String(email).toLowerCase());
 };

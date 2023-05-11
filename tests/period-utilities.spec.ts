@@ -1,7 +1,7 @@
 import {
   calculateElapsedPeriod,
   formatPeriodLocaleES,
-} from './period-utilities';
+} from '../src/period-utilities';
 
 describe('Period utilities', () => {
   it('Probando con años y meses', () => {

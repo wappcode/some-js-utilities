@@ -1,4 +1,8 @@
-import { isEmptyString, removeTilde, replaceSpecialChars } from './string-utilities';
+import {
+  isEmptyString,
+  removeTilde,
+  replaceSpecialChars,
+} from '../src/string-utilities';
 
 describe('StringFnUtilities', () => {
   it('testing remplazo de acentos', () => {

@@ -1,0 +1,14 @@
+{
+  "name": "somejsutilities",
+  "version": "1.0.1",
+  "description": "Utilidades generales de javascript",
+  "scripts": {},
+  "license": "ISC",
+  "main": ".",
+  "module": ".",
+  "typings": "somejsutilities.d.ts",
+  "exports": {
+    ".": "./somejsutilities.js",
+    "./string-utilities": "./string-utilities.js"
+  }
+}

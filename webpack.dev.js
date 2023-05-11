@@ -4,32 +4,32 @@ module.exports = {
   mode: 'development',
 
   entry: {
-    'stringutilities': {
-        import:  './public/string-fn.ts',
-        library: {
-            // all options under `output.library` can be used here
-            name: 'stringutilities',
-            type: 'umd',
-            umdNamedDefine: true,
-          },
+    stringutilities: {
+      import: './public/string-fn.ts',
+      library: {
+        // all options under `output.library` can be used here
+        name: 'stringutilities',
+        type: 'esm',
+        umdNamedDefine: true,
+      },
     },
-    'imageutilities': {
-        import:  './public/image-fn.ts',
-        library: {
-            // all options under `output.library` can be used here
-            name: 'imageutilities',
-            type: 'umd',
-            umdNamedDefine: true,
-          },
+    imageutilities: {
+      import: './public/image-fn.ts',
+      library: {
+        // all options under `output.library` can be used here
+        name: 'imageutilities',
+        type: 'umd',
+        umdNamedDefine: true,
+      },
     },
-    'index': {
-        import:  './public/index.ts',
-        library: {
-            // all options under `output.library` can be used here
-            name: 'index',
-            type: 'umd',
-            umdNamedDefine: true,
-          },
+    index: {
+      import: './public/index.ts',
+      library: {
+        // all options under `output.library` can be used here
+        name: 'index',
+        type: 'umd',
+        umdNamedDefine: true,
+      },
     },
   },
   devtool: 'inline-source-map',
@@ -53,27 +53,23 @@ module.exports = {
     new HtmlWebpackPlugin(
       {
         filename: 'index.html',
-        template: 'public/index.html'
+        template: 'public/index.html',
       },
       {
         filename: 'string-functions.html',
-        template: 'public/string-functions.html'
+        template: 'public/string-functions.html',
       },
       {
         filename: 'image-functions.html',
-        template: 'public/image-functions.html'
+        template: 'public/image-functions.html',
       }
-
-    )
-  ]
-  ,
-  
+    ),
+  ],
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
-    
   },
 };
