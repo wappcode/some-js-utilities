@@ -3,3 +3,4 @@ node_modules/
 *.code-worksapce
 *.zip
 test-pack/node_modules
+.DS_Store
