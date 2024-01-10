@@ -15,7 +15,7 @@
     }
   },
   "files": [
-    "dist/src",
+    "dist",
     "!dist/**/*.test.*",
     "!dist/**/*.spec.*"
   ],
