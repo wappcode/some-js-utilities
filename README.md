@@ -365,3 +365,24 @@ Determina si una variable esta vacía
 ### isPlainObject
 
 Determina si un objeto es un objeto javascript simple (Plain Object)
+
+### objectToBlob
+
+Convierte un objeto JSON en un tipo Blob
+
+```
+    (data,type)=> Blob
+    objectToBlob({"a":1,"b":2})
+    objectToBlob({"a":1,"b":2},"application/json")
+```
+
+### objectToResponse
+
+Convierte un objeto JSON en un tipo Response (util para simular el resultado de una consulta fetch)
+
+```
+    (data,status,statusText,type)=> Response
+    objectToResponse({"a":1,"b":2})
+    objectToResponse({"a":1,"b":2},200,"Ok","application/json")
+
+```

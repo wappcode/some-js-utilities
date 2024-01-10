@@ -28,3 +28,21 @@ export const isEmpty = (value: any): boolean => {
   }
   return !value;
 };
+
+export const objectToBlob = (data: unknown, type: string = 'application/json'): Blob => {
+  const blob = new Blob([JSON.stringify(data)], { type });
+  return blob;
+};
+
+export const objectToResponse = (
+  data: unknown,
+  status: number = 200,
+  statusText: string = 'Ok',
+  type: string = 'application/json'
+): Response => {
+  const blob = objectToBlob(data, type);
+
+  const init = { status, statusText };
+  const response = new Response(blob, init);
+  return response;
+};
