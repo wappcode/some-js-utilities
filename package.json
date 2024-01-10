@@ -1,0 +1,43 @@
+{
+  "name": "somejsutilities",
+  "private": false,
+  "version": "2.0.0",
+  "description": "Utilidades para consultas graphql en el navegador",
+  "main": "./dist/somejsutilities.umd.cjs",
+  "module": "./dist/somejsutilities.js",
+  "typings": "./dist/main.d.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/somejsutilities.js",
+      "require": "./dist/somejsutilities.cjs",
+      "types": "./dist/main.d.ts"
+    }
+  },
+  "files": [
+    "dist/src",
+    "!dist/**/*.test.*",
+    "!dist/**/*.spec.*"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "rm -rf dist && tsc && vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "lint": "prettier --plugin-search-dir . --check . && eslint .",
+    "format": "prettier --plugin-search-dir . --write ."
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.8",
+    "@typescript-eslint/eslint-plugin": "^6.18.1",
+    "@typescript-eslint/parser": "^6.18.1",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.2",
+    "prettier": "^3.1.1",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.8",
+    "vite-plugin-dts": "^3.7.0",
+    "vitest": "^1.1.3"
+  }
+}
