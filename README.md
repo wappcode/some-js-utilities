@@ -1,5 +1,7 @@
 # SomeJsUtilities
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 Este proyecto incluye funciones de uso común para trabajar con imagenes, textos, colores entre otros.
 
 Algunas funciones solo estan disponibles para el navegador.
